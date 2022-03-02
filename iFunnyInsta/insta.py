@@ -24,7 +24,6 @@ def launch_inst():
     opts.add_experimental_option("mobileEmulation", mobile_emulation)
     driver = webdriver.Chrome(executable_path=r"chromedriver.exe", options=opts)
 
-
     # Opens Instagram
     main_url = "https://www.instagram.com"
     driver.get(main_url)
@@ -133,7 +132,6 @@ def ordered_functions():
     remove_popups()
     sleep(settings.wait_time)
     remove_popups()
-
 
 
 def loop_posting():

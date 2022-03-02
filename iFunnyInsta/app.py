@@ -12,6 +12,7 @@ def long_operation_thread(gui_queue, post_source):
     # Starts posting based on selected user inputs
     insta.loop_posting()
 
+
 # Makes sure everything is in order before program starts
 def verifications(values):
     # if username/password is not filled out
@@ -45,12 +46,12 @@ def the_gui():
             [sg.Text('Post from:', size=(17, 1), font=("Roboto", 8)),
              sg.InputCombo(('9gag', 'Instagram user'), default_value="9gag", key="post_source", size=(25, 1))],
             [sg.Text('How will you sign in:', size=(17, 1), font=("Roboto", 8)),
-             sg.InputCombo(('Facebook', 'Regular Instagram Login'), default_value="Facebook", key="login_type",
+             sg.InputCombo(('Facebook', 'Regular Instagram Login'), default_value="Regular Instagram Login", key="login_type",
                            size=(25, 1))],
             [sg.Text('Username/Email:', size=(17, 1), font=("Roboto", 8)),
-             sg.InputText('', key="username", size=(27, 1))],
+             sg.InputText('kezin99@gmail.com', key="username", size=(27, 1))],
             [sg.Text('Password:', size=(17, 1), font=("Roboto", 8)),
-             sg.InputText('', key="password", password_char='*', size=(27, 1))],
+             sg.InputText('jeong99Lego@', key="password", password_char='*', size=(27, 1))],
         ],
             title='Instagram Login', title_color="#ffffff")], ]
 
@@ -120,7 +121,7 @@ def the_gui():
         # General Options Section
         [sg.Frame(layout=[
             [sg.Text('Wait time (seconds)', size=(15, 0)),
-             sg.Spin(values=[i for i in range(0, 1000)], key="wait_time", initial_value=5, size=(6, 0))],
+             sg.Spin(values=[i for i in range(0, 1000)], key="wait_time", initial_value=3, size=(6, 0))],
             [sg.Text('The amount of time for an action to be done ex: closing a popup. I recommend a '
                      'min of 5. If you have slower internet, increase this value.', size=(50, 0), font=("Roboto", 8))],
             [sg.Text('_' * 100, font=("Roboto", 4))],
@@ -137,7 +138,8 @@ def the_gui():
         [sg.Button('Run', size=(10, 1), key="Run"), sg.Button('Exit', size=(10, 1))]
     ]
     # Window options
-    window = sg.Window('Made with love - v1.0', layout, default_element_size=(40, 1), grab_anywhere=False, location=(5, 5))
+    window = sg.Window('Made with love - v1.0', layout, default_element_size=(40, 1), grab_anywhere=False,
+                       location=(5, 5))
 
     while True:
         event, values = window.read(timeout=100)

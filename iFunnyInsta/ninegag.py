@@ -18,6 +18,7 @@ def make_square(im, min_size=256, fill_color=(0, 0, 0, 0)):
     new_im.paste(im, (int((size - x) / 2), int((size - y) / 2)))
     return new_im
 
+
 # Print section of JSON
 def print_results(data):
     theJSON = json.loads(data)
@@ -69,18 +70,27 @@ def get_data():
     # loops through 9gag section user chose
     for x in settings.ninegag_categories:
         try:
-            if x in ("hot","trending"):
+            if x in ("hot", "trending"):
                 urlData = "https://9gag.com/v1/group-posts/group/default/type/" + x
             else:
                 urlData = "https://9gag.com/v1/group-posts/group/" + x
 
             # Gets the JSON from the URL and sends a header so that it looks like a legit request
-            user_agent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.7) Gecko/2009021910 Firefox/3.0.7'
-            headers = {'User-Agent': user_agent, }
+
+            # TODO: Gets a 403 error
+            '''
+            Why there is 403 error
+            This error arises when you successfully make a connection with the server, 
+            but the server chooses not to respond to these requests.
+            The reason server chooses to do so is that the several website owner do not want a bot 
+            or a program to access their website, they want only real-users to use their services.
+            '''
+            user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36'
+            headers = {'User-Agent': user_agent}
             print("Getting images from category: " + x)
 
             # Opens the URL
-            request = urllib.request.Request(urlData, None, headers=headers)
+            request = urllib.request.Request(urlData, headers=headers)
             webUrl = urllib.request.urlopen(request)
 
             # If URL is opened with success, Then run printResults function
@@ -89,5 +99,6 @@ def get_data():
                 print_results(data)
             else:
                 print("Error")
-        except:
+        except Exception as e:
+            print(e)
             pass
